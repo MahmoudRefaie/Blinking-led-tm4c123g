@@ -1,0 +1,8 @@
+Debug/
+.vscode/
+.settings/
+.launches/
+targetConfigs/
+.cssproject
+.cproject
+.project
