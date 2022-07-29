@@ -4,9 +4,10 @@ Debug/**
 .settings/
 .launches/
 targetConfigs/
-.cssproject
+.ccsproject
 .cproject
 .project
+*.cmd
 **/*.out
 **/*.map
 **/*.xml
