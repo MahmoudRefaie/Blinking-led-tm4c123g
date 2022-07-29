@@ -1,4 +1,5 @@
 Debug/
+Debug/**
 .vscode/
 .settings/
 .launches/
@@ -6,3 +7,7 @@ targetConfigs/
 .cssproject
 .cproject
 .project
+**/*.out
+**/*.map
+**/*.xml
+**/*.obj

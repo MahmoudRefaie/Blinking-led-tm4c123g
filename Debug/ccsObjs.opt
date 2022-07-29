@@ -1,1 +1,0 @@
-"./tm4c123gh6pm_startup_ccs.obj" "./APPLICATION/Blinking.obj" "./APPLICATION/main.obj" "./Config/Gpio_Lcfg.obj" "./Config/Gpt_Lcfg.obj" "./HAL/Botton.obj" "./HAL/Led.obj" "./MCAL/Gpio_arm.obj" "./MCAL/Gpt.obj" "./MCAL/Nvic.obj" "../tm4c123gh6pm.cmd" -llibc.a 
