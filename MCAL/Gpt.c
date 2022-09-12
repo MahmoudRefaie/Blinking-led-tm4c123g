@@ -56,10 +56,10 @@ Std_ReturnType Gpt_Init(const Gpt_ConfigType* configPtr)
     for(i = 0 ; i < GPT_CONFIG_ARRAY_SIZE ; i++){ 
 
         WRITE_BIT_BB(RCGCTIMER_ADDR,CGC_BIT_TIMER(configPtr[i].channelId),STD_HIGH);       /* Enable clock gate to the timer*/
-        WRITE_BIT_BB(GPTMCTL_ADDR_TIMER(configPtr[i].channelId),GPTMCTL_TAEN,STD_LOW);                /* Disables the timer*/
+        WRITE_BIT_BB(GPTMCTL_ADDR_TIMER(configPtr[i].channelId),GPTMCTL_TAEN,STD_LOW);     /* Disables the timer*/
 
 
-        //TODO: Wait 3 system clocks after the timer module clock is enabled
+        
         
         GPTMCFG_TIMER(configPtr[i].channelId) = 0x0;                                       /* 32-bit timer configuration and 64-bit for wide timers */
 
@@ -69,10 +69,10 @@ Std_ReturnType Gpt_Init(const Gpt_ConfigType* configPtr)
         // TAMIE: Match innerrupt enabled  ->       0x20
         if(configPtr[i].mode ==  GPT_MODE_PERIODIC)
         {
-            GPTMTAMR_TIMER(configPtr[i].channelId) = 0x02;
+            GPTMTAMR_TIMER(configPtr[i].channelId) = 0x02;                                  /* Periodic mode */
         }
         else{
-            GPTMTAMR_TIMER(configPtr[i].channelId) = 0x01;
+            GPTMTAMR_TIMER(configPtr[i].channelId) = 0x01;                                  /* One-shot mode*/
         }
         // GPTMTAPR_TIMER(configPtr[i].channelId) = 0xFFFF;                                         /* Set the prescaler*/
     }
@@ -96,7 +96,7 @@ Std_ReturnType Gpt_Init(const Gpt_ConfigType* configPtr)
  */
 void Gpt_StartTimer(Gpt_ChannelType channel, Gpt_ValueType value)
 {
-    GPTMTAILR_TIMER(channel) = value * 16000U;                                  /* Load value to the timer */
+    GPTMTAILR_TIMER(channel) = value * 16000U;                              /* Load value to the timer */
     WRITE_BIT_BB(GPTMIMR_ADDR_TIMER(channel),GPTMIMR_TATOIM ,STD_HIGH);     /*Enable Interrupt*/
     WRITE_BIT_BB(GPTMCTL_ADDR_TIMER(channel),GPTMCTL_TAEN   ,STD_HIGH);     /* Enable the timer and start counting*/	
 }
@@ -108,12 +108,12 @@ void Gpt_StopTimer(Gpt_ChannelType channel)
 }
 
 
-void Gpt_DisableNotification(Gpt_ChannelType channel)
+void Gpt_EnableNotification(Gpt_ChannelType channel)
 {
     WRITE_BIT_BB(GPTMIMR_ADDR_TIMER(channel),GPTMIMR_TATOIM ,STD_HIGH);     /*Enable Interrupt*/
 }
 
-void Gpt_EnableNotification(Gpt_ChannelType channel)
+void Gpt_DisableNotification(Gpt_ChannelType channel)
 {
     WRITE_BIT_BB(GPTMIMR_ADDR_TIMER(channel),GPTMIMR_TATOIM ,STD_LOW);    /*Disable Interrupt*/
 }

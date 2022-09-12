@@ -55,16 +55,16 @@ Std_ReturnType Nvic_Init(void)
 {
     /*TODO Configure Grouping\SubGrouping System in APINT register in SCB*/
     //TODO: configure priority grouping combination in APINT in SCB
-    APINT.R = 0x05FA0000|0x00000400;
-    
+    APINT.R = 0x05FA0000|0x00000400;        // xxx --> 8 groups and 1 subgroup
+   
 
 
     /*TODO : Assign Group\Subgroup priority in NVIC_PRIx Nvic and SCB_SYSPRIx Registers*/  
-    NVIC.IP[4] |= 0X0;
+    NVIC.IP[4] |= 0X0;      // priority for timer 0 interrpt number 19
     
 	
 	/*TODO : Enable\Disable based on user configurations in NVIC_ENx and SCB_Sys Registers */
-    //Timer 0 bit is 19
+    //Timer 0 is bit 19
     NVIC.ISER[0] |= 1<<19UL;
 
     return E_OK;

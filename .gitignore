@@ -12,3 +12,5 @@ targetConfigs/
 **/*.map
 **/*.xml
 **/*.obj
+/.metadata/
+.DS_Store

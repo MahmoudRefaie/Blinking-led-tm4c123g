@@ -26,6 +26,8 @@
  *  GLOBAL DATA
  *********************************************************************************************************************/
 uint8 led_status = STD_LOW;
+uint32 time_On = 500U;
+uint32 time_Off = 500U;
 
 /**********************************************************************************************************************
  *  LOCAL FUNCTION PROTOTYPES
@@ -51,8 +53,10 @@ uint8 led_status = STD_LOW;
 * \Return value:   : Std_ReturnType  E_OK
 *                                    E_NOT_OK                                  
 *******************************************************************************/
-void blink_led()
+void blink_led(uint32 on, uint32 off)
 {
+    time_On = on;
+    time_Off = off;
     Led_On(LED_B);
     led_status = STD_HIGH;
     Gpt_StartTimer((Gpt_ChannelType)GPT_TIMER0,time_On);
