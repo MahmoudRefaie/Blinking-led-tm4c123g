@@ -14,3 +14,5 @@ targetConfigs/
 **/*.obj
 /.metadata/
 .DS_Store
+/dvt/**
+/RemoteSystemsTempFiles/**
